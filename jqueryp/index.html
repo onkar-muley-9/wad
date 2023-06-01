@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Mobile Page</title>
+  <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script> 
+</head>
+<body>
+  <!-- First Page -->
+  <div data-role="page" id="page1">
+    <div data-role="header" data-theme="a">
+      <h1>jQuery Mobile Page</h1>
+    </div>
+
+    <!-- Panel -->
+    <div data-role="panel" id="myPanel">
+      <h3>Panel</h3>
+      <p>This is a panel.</p>
+    </div>
+
+    <!-- Main content -->
+    <div data-role="main" class="ui-content">
+      <h2>Content</h2>
+
+      <!-- Grid -->
+      <div class="ui-grid-a">
+        <div class="ui-block-a">
+          <a href="#myPanel" data-role="button" data-theme="b">Open Panel</a>
+        </div>
+        <div class="ui-block-b">
+          <a href="#page2" data-role="button" data-theme="b">Go to Page 2</a>
+        </div>
+      </div>
+
+      <!-- Form -->
+      <form>
+        <div class="ui-grid-a">
+          <div class="ui-block-a">
+            <label for="name">Name:</label>
+          </div>
+          <div class="ui-block-b">
+            <input type="text" name="name" id="name">
+          </div>
+          <div class="ui-block-a">
+            <label for="email">Email:</label>
+          </div>
+          <div class="ui-block-b">
+            <input type="email" name="email" id="email">
+          </div>
+          <div class="ui-block-a"></div>
+          <div class="ui-block-b">
+            <input type="submit" value="Submit">
+          </div>
+        </div>
+      </form>
+
+      <!-- Events -->
+      <div id="eventOutput"></div>
+    </div>
+
+    <!-- Footer -->
+    <div data-role="footer" data-theme="a">
+      <h4>Footer</h4>
+    </div>
+  </div>
+
+  <!-- Second Page -->
+  <div data-role="page" id="page2">
+    <div data-role="header" data-theme="a">
+      <h1>Page 2</h1>
+    </div>
+
+    <!-- Navigation -->
+    <div data-role="navbar">
+      <ul>
+        <li><a href="#page1" data-icon="home" data-transition="slide">Home</a></li>
+        <li><a href="#" data-icon="star" data-transition="slide">Favorite</a></li>
+        <li><a href="#" data-icon="gear" data-transition="slide">Settings</a></li>
+      </ul>
+    </div>
+
+    <!-- Main content -->
+    <div data-role="main" class="ui-content">
+      <h2>Page 2 Content</h2>
+      <p>Name: <span id="nameValue"></span></p>
+      <p>Email: <span id="emailValue"></span></p>
+    </div>
+
+    <!-- Footer -->
+    <div data-role="footer" data-theme="a">
+      <h4>Footer</h4>
+    </div>
+  </div>
+
+  <script>
+    // Event handling
+    $(document).on("pagecreate", "#page1", function() {
+      $("form").on("submit", function(event) {
+        event.preventDefault();
+        var name = $("#name").val();
+        var email = $("#email").val();
+        $("#nameValue").text(name);
+        $("#emailValue").text(email);
+        $.mobile.changePage("#page2");
+      });
+    });
+  </script> 
+</body>
+</html>
